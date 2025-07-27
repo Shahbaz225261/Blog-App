@@ -12,7 +12,7 @@ export default function Signup() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100 to-fuchsia-100">
       <div className="w-96 bg-white/80 backdrop-blur-lg rounded-xl shadow-2xl p-8 flex flex-col items-center border border-white/80">
         <h2 className="text-2xl font-normal text-center mb-4 text-gray-900 tracking-normal">
-          Log in to your account
+          Create your account
         </h2>
         <p className="mb-4 text-gray-600 text-center text-base">
           Enter your details
@@ -51,12 +51,10 @@ export default function Signup() {
             onClick={async () => {
               const user = username.current?.value;
               const pass = password.current?.value;
-
               await axios.post("http://localhost:3000/api/v1/signup", {
                 username:user,
                 password:pass,
               });
-
               router.push("/signin"); 
             }}
             className="w-full mt-2 py-2 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold shadow-md transition duration-300 ease-in-out hover:brightness-110 hover:scale-105"

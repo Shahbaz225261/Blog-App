@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
-      {/* Left: Text & CTA */}
+    
       <div className="w-full md:w-1/2 flex flex-col justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-fuchsia-100 px-10 py-16 border-r border-gray-300">
         <div className="max-w-xl mx-auto">
           <h1 className="text-5xl font-extrabold text-gray-800 mb-6 leading-tight">
