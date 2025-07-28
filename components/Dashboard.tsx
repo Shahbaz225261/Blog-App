@@ -1,7 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-
-export default function Dashboard() {
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+export default async function Dashboard() {
+  const session = await getServerSession();
+    if (session) {
+      redirect("/blogs");
+    }
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       <section className="w-full md:w-1/2 flex flex-col justify-center bg-gradient-to-br from-blue-100 via-purple-100 to-fuchsia-100 px-10 py-16 border-r border-gray-300">

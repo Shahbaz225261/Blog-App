@@ -5,7 +5,6 @@ import { NextRequest, NextResponse } from "next/server";
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
-
     // Create a new user record
     const user = await client.user.create({
       data: {

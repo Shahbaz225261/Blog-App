@@ -1,8 +1,16 @@
-// app/page.tsx (if you're using App Router)
 import Dashboard from "../components/Dashboard";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function Home() {
-  return <div>
-    <Dashboard />
-  </div>
+export default async function Home() {
+  const session = await getServerSession();
+   if (session) {
+    redirect("/blogs");
+  }
+  return (
+    <main>
+      <Dashboard />
+    </main>
+  );
 }
+
