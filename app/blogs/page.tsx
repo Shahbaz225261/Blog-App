@@ -11,7 +11,11 @@ export default async function BlogsPage() {
   
   return (
     <div>
-      <pre>{session}</pre>
+      <div>
+        <p>ID: {session.user.id}</p>
+        <p>Name: {session.user.username}</p>
+    </div>
+
       <h1>Blogs</h1>
       <p>Protected blog page content.</p>
     </div>
