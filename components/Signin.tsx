@@ -2,7 +2,8 @@
 import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import  Google  from "@/icons/Google";
+import Google from "@/icons/Google";
+import Link from "next/link";
 
 export default function Signin() {
   const username = useRef<HTMLInputElement>(null);
@@ -20,7 +21,16 @@ export default function Signin() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100 to-fuchsia-100">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100 to-fuchsia-100 relative">
+      
+      {/* 🏠 Home Button */}
+      <Link
+        href="/"
+        className="absolute top-5 left-5 bg-white/80 backdrop-blur-md border border-gray-200 text-gray-800 px-4 py-1.5 rounded-lg shadow hover:bg-white hover:scale-105 transition font-medium text-sm"
+      >
+        ← Home
+      </Link>
+
       <div className="w-96 bg-white/80 backdrop-blur-lg rounded-xl shadow-2xl p-8 flex flex-col items-center border border-white/80">
         <h2 className="text-2xl font-normal text-center mb-4 text-gray-900 tracking-normal">
           Log in to your account
@@ -97,33 +107,32 @@ export default function Signin() {
 
         {/* Google Sign-In Button */}
         <div className="w-full mt-6">
-  <button
-    onClick={() => signIn("google", { callbackUrl: "/blogs" })}
-    className="
-      w-full
-      flex items-center justify-center gap-2
-      py-2.5 px-4
-      rounded-md
-      bg-white
-      border border-gray-300
-      shadow-sm
-      transition
-      hover:bg-gray-50
-      hover:shadow-md
-      focus:outline-none
-      focus:ring-2 focus:ring-blue-100
-      active:border-gray-400
-      group
-    "
-    style={{ fontFamily: 'Roboto, Arial, sans-serif' }}
-  >
-    <Google/>
-    <span className="text-gray-800 text-[15px] font-medium">
-      Sign in with Google
-    </span>
-  </button>
-</div>
-
+          <button
+            onClick={() => signIn("google", { callbackUrl: "/blogs" })}
+            className="
+              w-full
+              flex items-center justify-center gap-2
+              py-2.5 px-4
+              rounded-md
+              bg-white
+              border border-gray-300
+              shadow-sm
+              transition
+              hover:bg-gray-50
+              hover:shadow-md
+              focus:outline-none
+              focus:ring-2 focus:ring-blue-100
+              active:border-gray-400
+              group
+            "
+            style={{ fontFamily: "Roboto, Arial, sans-serif" }}
+          >
+            <Google />
+            <span className="text-gray-800 text-[15px] font-medium">
+              Sign in with Google
+            </span>
+          </button>
+        </div>
 
         <p className="mt-6 text-gray-500 text-sm">
           New here?{" "}

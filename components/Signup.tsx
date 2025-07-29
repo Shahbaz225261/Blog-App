@@ -1,10 +1,10 @@
 "use client";
-
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import Google from "@/icons/Google";
+import Link from "next/link";
 
 export default function Signup() {
   const username = useRef<HTMLInputElement>(null);
@@ -22,6 +22,12 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-100 to-fuchsia-100">
+       <Link
+        href="/"
+        className="absolute top-5 left-5 bg-white/80 backdrop-blur-md border border-gray-200 text-gray-800 px-4 py-1.5 rounded-lg shadow hover:bg-white hover:scale-105 transition font-medium text-sm"
+      >
+        ← Home
+      </Link>
       <div className="w-96 bg-white/80 backdrop-blur-lg rounded-xl shadow-2xl p-8 flex flex-col items-center border border-white/80">
         <h2 className="text-2xl font-normal text-center mb-4 text-gray-900 tracking-normal">
           Create your account
@@ -77,7 +83,6 @@ export default function Signup() {
             Sign Up
           </button>
 
-          {/* Google Sign In Button */}
           <button
             onClick={() => signIn("google", { callbackUrl: "/blogs" })}
             className="
@@ -99,7 +104,7 @@ export default function Signup() {
             "
             style={{ fontFamily: 'Roboto, Arial, sans-serif' }}
           >
-            <Google className="w-5 h-5 text-gray-700" />
+            <Google/>
             <span className="text-gray-800 text-[15px] font-medium">
               Sign in with Google
             </span>
@@ -108,9 +113,9 @@ export default function Signup() {
 
         <p className="mt-6 text-gray-500 text-sm">
           Already have an account?{" "}
-          <a href="/signin" className="text-fuchsia-600 hover:underline font-medium">
+          <Link href="/signin" className="text-fuchsia-600 hover:underline font-medium">
             Sign In
-          </a>
+          </Link>
         </p>
       </div>
     </div>
