@@ -2,19 +2,21 @@
 import { useRef, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import  Google  from "@/icons/Google";
 
 export default function Signin() {
-  
   const username = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
   const router = useRouter();
   const [error, setError] = useState("");
-  const[loader,setLoader] = useState(false);
+  const [loader, setLoader] = useState(false);
 
-  if(loader){
-    return  <div className="min-h-screen flex items-center justify-center">
+  if (loader) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
         <p className="text-gray-700 text-lg font-semibold">Loading...</p>
       </div>
+    );
   }
 
   return (
@@ -65,23 +67,26 @@ export default function Signin() {
           </div>
 
           {error && (
-            <p className="text-red-600 text-center text-sm font-semibold">{error}</p>
+            <p className="text-red-600 text-center text-sm font-semibold">
+              {error}
+            </p>
           )}
 
           <button
-            type="button" 
+            type="button"
             className="w-full mt-2 py-2 rounded-lg bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-bold shadow-md transition duration-300 ease-in-out hover:brightness-110 hover:scale-105"
             onClick={async () => {
               setLoader(true);
-              setError(""); 
+              setError("");
               const res = await signIn("credentials", {
                 redirect: false,
                 username: username.current?.value,
                 password: password.current?.value,
               });
               if (res?.ok) {
-                return router.push("/blogs");
+                router.push("/blogs");
               } else {
+                setLoader(false);
                 setError("Invalid username or password");
               }
             }}
@@ -89,6 +94,36 @@ export default function Signin() {
             Sign In
           </button>
         </form>
+
+        {/* Google Sign-In Button */}
+        <div className="w-full mt-6">
+  <button
+    onClick={() => signIn("google", { callbackUrl: "/blogs" })}
+    className="
+      w-full
+      flex items-center justify-center gap-2
+      py-2.5 px-4
+      rounded-md
+      bg-white
+      border border-gray-300
+      shadow-sm
+      transition
+      hover:bg-gray-50
+      hover:shadow-md
+      focus:outline-none
+      focus:ring-2 focus:ring-blue-100
+      active:border-gray-400
+      group
+    "
+    style={{ fontFamily: 'Roboto, Arial, sans-serif' }}
+  >
+    <Google/>
+    <span className="text-gray-800 text-[15px] font-medium">
+      Sign in with Google
+    </span>
+  </button>
+</div>
+
 
         <p className="mt-6 text-gray-500 text-sm">
           New here?{" "}

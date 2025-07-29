@@ -1,11 +1,9 @@
-import client from "../../../lib/db"; // assuming default export is PrismaClient instance
+import client from "../../../lib/db"; 
 import { NextRequest, NextResponse } from "next/server";
-
 
 export async function POST(req: NextRequest) {
   try {
     const data = await req.json();
-    // Create a new user record
     const user = await client.user.create({
       data: {
         username: data.username,
@@ -15,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       msg: "You have been signed up",
-    });
+    })
   } catch (error:any) {
     console.error("Error creating user:", error);
     return NextResponse.json(
